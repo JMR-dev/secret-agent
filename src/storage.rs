@@ -435,7 +435,7 @@ impl ConversationDraft {
 fn parse_tool(tool: String) -> rusqlite::Result<ToolKind> {
     match tool.as_str() {
         "claude" => Ok(ToolKind::Claude),
-        "gemini" => Ok(ToolKind::Gemini),
+        "agy" => Ok(ToolKind::Agy),
         "codex" => Ok(ToolKind::Codex),
         "copilot" => Ok(ToolKind::Copilot),
         _ => Err(rusqlite::Error::FromSqlConversionFailure(

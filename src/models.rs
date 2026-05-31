@@ -15,7 +15,7 @@ const CLAUDE_MODELS: &[&str] = &[
     "claude-haiku-4-5",
 ];
 
-const GEMINI_MODELS: &[&str] = &[
+const AGY_MODELS: &[&str] = &[
     "auto",
     "gemini-2.5-pro",
     "gemini-2.5-flash",
@@ -90,7 +90,7 @@ fn is_model_available(tool: ToolKind, model: &str) -> bool {
         ToolKind::Claude => {
             CLAUDE_MODELS.contains(&normalized.as_str()) || matches_claude_model_name(&normalized)
         }
-        ToolKind::Gemini => GEMINI_MODELS.contains(&normalized.as_str()),
+        ToolKind::Agy => AGY_MODELS.contains(&normalized.as_str()),
         ToolKind::Codex => CODEX_MODELS.contains(&normalized.as_str()),
         ToolKind::Copilot => COPILOT_MODELS.contains(&normalized.as_str()),
     }

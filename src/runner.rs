@@ -92,7 +92,7 @@ async fn run(
                 internal_tx.clone(),
             ));
         }
-        OutputMode::GeminiJson | OutputMode::CodexJson => {
+        OutputMode::AgyJson | OutputMode::CodexJson => {
             tokio::spawn(read_structured_stream(
                 stdout,
                 command_spec.output_mode,
@@ -279,7 +279,7 @@ fn parse_structured_line(output_mode: OutputMode, line: &str) -> Result<ParsedSt
     let value: Value = serde_json::from_str(line)?;
     let tool_conversation_id = find_tool_conversation_id(output_mode, &value);
     let display_text = match output_mode {
-        OutputMode::GeminiJson => extract_gemini_display_text(&value),
+        OutputMode::AgyJson => extract_agy_display_text(&value),
         OutputMode::CodexJson => extract_codex_display_text(&value),
         OutputMode::PlainText => None,
     };
@@ -290,7 +290,7 @@ fn parse_structured_line(output_mode: OutputMode, line: &str) -> Result<ParsedSt
     })
 }
 
-fn extract_gemini_display_text(value: &Value) -> Option<String> {
+fn extract_agy_display_text(value: &Value) -> Option<String> {
     let event_type = value
         .get("type")
         .and_then(Value::as_str)
@@ -358,7 +358,7 @@ fn extract_codex_display_text(value: &Value) -> Option<String> {
 
 fn find_tool_conversation_id(output_mode: OutputMode, value: &Value) -> Option<String> {
     let keys = match output_mode {
-        OutputMode::GeminiJson => &["session_id", "sessionId"][..],
+        OutputMode::AgyJson => &["session_id", "sessionId"][..],
         OutputMode::CodexJson => &["thread_id", "threadId", "session_id", "sessionId"][..],
         OutputMode::PlainText => return None,
     };
@@ -469,15 +469,15 @@ mod tests {
     }
 
     #[test]
-    fn parses_gemini_session_id() {
+    fn parses_agy_session_id() {
         let parsed = parse_structured_line(
-            OutputMode::GeminiJson,
-            r#"{"type":"init","session_id":"gemini-session-1"}"#,
+            OutputMode::AgyJson,
+            r#"{"type":"init","session_id":"agy-session-1"}"#,
         )
         .expect("structured line should parse");
         assert_eq!(
             parsed.tool_conversation_id.as_deref(),
-            Some("gemini-session-1")
+            Some("agy-session-1")
         );
     }
 

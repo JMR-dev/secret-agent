@@ -2,7 +2,7 @@
 name = "secret-agent"
 version = "0.1.0"
 edition = "2024"
-description = "Rust TUI/CLI wrapper for Claude, Gemini, Codex, and Copilot with SQLite history"
+description = "Rust TUI/CLI wrapper for Claude, Antigravity, Codex, and Copilot with SQLite history"
 
 [dependencies]
 anyhow = "1.0"

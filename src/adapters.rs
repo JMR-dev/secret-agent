@@ -20,7 +20,7 @@ pub struct CommandSpec {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum OutputMode {
     PlainText,
-    GeminiJson,
+    AgyJson,
     CodexJson,
 }
 
@@ -63,7 +63,7 @@ pub fn build_command(request: &AgentRequest) -> Result<CommandSpec> {
             args.push(composed_prompt);
             tool_conversation_id_hint = Some(tool_conversation_id);
         }
-        ToolKind::Gemini => {
+        ToolKind::Agy => {
             args.push("-p".to_string());
             args.push(composed_prompt);
             args.push("--output-format".to_string());
@@ -73,7 +73,7 @@ pub fn build_command(request: &AgentRequest) -> Result<CommandSpec> {
                 args.push(model.to_string());
             }
             args.extend(collect_extra_args(role, &request.extra_args)?);
-            output_mode = OutputMode::GeminiJson;
+            output_mode = OutputMode::AgyJson;
         }
         ToolKind::Codex => {
             args.push("exec".to_string());
@@ -129,7 +129,7 @@ pub fn tool_notes(tool: ToolKind) -> &'static str {
         ToolKind::Claude => {
             "supports model and effort directly; role markdown can be injected as a system prompt"
         }
-        ToolKind::Gemini => {
+        ToolKind::Agy => {
             "supports model directly; role markdown is prepended to the task prompt"
         }
         ToolKind::Codex => "supports model directly; role markdown is prepended to the task prompt",

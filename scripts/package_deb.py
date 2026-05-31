@@ -19,7 +19,7 @@ except ModuleNotFoundError as exc:  # pragma: no cover - hard failure on old Pyt
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "target" / "debian"
 DEFAULT_DESCRIPTION = (
-    "Rust TUI/CLI wrapper for Claude, Gemini, Codex, and Copilot with SQLite history"
+    "Rust TUI/CLI wrapper for Claude, Antigravity, Codex, and Copilot with SQLite history"
 )
 DEFAULT_MAINTAINER = "Secret Agent Maintainers <noreply@example.com>"
 

@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 #[serde(rename_all = "snake_case")]
 pub enum ToolKind {
     Claude,
-    Gemini,
+    Agy,
     Codex,
     Copilot,
 }
@@ -17,7 +17,7 @@ pub enum ToolKind {
 impl ToolKind {
     pub const ALL: [ToolKind; 4] = [
         ToolKind::Claude,
-        ToolKind::Gemini,
+        ToolKind::Agy,
         ToolKind::Codex,
         ToolKind::Copilot,
     ];
@@ -25,7 +25,7 @@ impl ToolKind {
     pub fn command_name(self) -> &'static str {
         match self {
             ToolKind::Claude => "claude",
-            ToolKind::Gemini => "gemini",
+            ToolKind::Agy => "agy",
             ToolKind::Codex => "codex",
             ToolKind::Copilot => "copilot",
         }
@@ -40,7 +40,7 @@ impl fmt::Display for ToolKind {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let label = match self {
             ToolKind::Claude => "Claude",
-            ToolKind::Gemini => "Gemini",
+            ToolKind::Agy => "Antigravity",
             ToolKind::Codex => "Codex",
             ToolKind::Copilot => "Copilot",
         };

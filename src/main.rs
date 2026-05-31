@@ -24,7 +24,7 @@ use uuid::Uuid;
 #[derive(Debug, Parser)]
 #[command(name = "secret-agent")]
 #[command(
-    about = "Rust TUI/CLI wrapper for Claude, Gemini, Codex, and Copilot with SQLite history"
+    about = "Rust TUI/CLI wrapper for Claude, Antigravity, Codex, and Copilot with SQLite history"
 )]
 struct Cli {
     #[arg(long, global = true)]
