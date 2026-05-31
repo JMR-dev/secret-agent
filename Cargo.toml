@@ -8,14 +8,14 @@ description = "Rust TUI/CLI wrapper for Claude, Antigravity, Codex, and Copilot 
 anyhow = "1.0"
 chrono = { version = "0.4", features = ["serde"] }
 clap = { version = "4.5", features = ["derive"] }
-crossterm = { version = "0.28", features = ["event-stream"] }
+crossterm = { version = "^0.29.0", features = ["event-stream"] }
 futures = "0.3"
-ratatui = "0.29"
-rusqlite = { version = "0.32", features = ["bundled"] }
+ratatui = "0.30"
+rusqlite = { version = "^0.40.0", features = ["bundled"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 serde_yaml = "0.9"
 shell-words = "1.1"
 tokio = { version = "1.43", features = ["full"] }
 uuid = { version = "1.11", features = ["serde", "v7"] }
-which = "7.0"
+which = "^8.0.2"
